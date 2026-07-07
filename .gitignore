@@ -1,0 +1,35 @@
+# Build
+**/bin/
+**/obj/
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# User files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# Docker
+.docker/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db

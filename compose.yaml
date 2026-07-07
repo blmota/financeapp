@@ -1,0 +1,50 @@
+﻿services:
+  mariadb:
+    image: mariadb:11.0
+    container_name: financeDB
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_CONNECT_PASS}
+      MYSQL_DATABASE: ${DB_CONNECT_NAME}
+      MYSQL_USER: ${DB_CONNECT_USER}
+      MYSQL_PASSWORD: ${DB_CONNECT_PASS}
+
+    ports:
+      - "8003:3306"
+
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+    networks:
+      - app_network
+
+  api:
+    container_name: financeApi
+
+    build:
+      context: .
+      dockerfile: financeApp.Api/Dockerfile
+      target: dev
+    ports:
+      - "8080:8080"
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+
+    depends_on:
+      - mariadb
+
+    volumes:
+      - .:/src
+
+    networks:
+      - app_network
+
+volumes:
+  mariadb_data:
+
+networks:
+  app_network:

@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="compose.yaml" />
+  </Folder>
+  <Project Path="financeApp.Api/financeApp.Api.csproj" />
+  <Project Path="financeApp.Application/financeApp.Application.csproj" />
+  <Project Path="financeApp.Domain/financeApp.Domain.csproj" />
+  <Project Path="financeApp.Infrastructure/financeApp.Infrastructure.csproj" />
+</Solution>

@@ -1,0 +1,6 @@
+namespace financeApp.Domain.Abstractions;
+
+public class Entity
+{
+    public int Id { get; set; }
+}
