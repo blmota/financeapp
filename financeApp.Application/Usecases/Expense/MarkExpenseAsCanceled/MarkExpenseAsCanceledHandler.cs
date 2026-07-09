@@ -14,6 +14,6 @@ public class MarkExpenseAsCanceledHandler(IExpenseRepository repository)
         expense.Cancel();
         return expense is null
             ? Result.Failure<MarkExpenseAsCanceledResponse>(new Error("400", "Não foi possível cancelar despesa.")) 
-            : Result.Success(new MarkExpenseAsCanceledResponse(expense.Id, expense.Title, expense.Amount, expense.DueDate, expense.Status, expense.Description, expense.CategoryId));
+            : Result.Success(new MarkExpenseAsCanceledResponse(expense.Id, expense.Title.ToString()!, expense.Amount.Value, expense.DueDate.Value, expense.Status, expense.Description.ToString()!, expense.CategoryId));
     }
 }

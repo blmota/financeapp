@@ -13,6 +13,6 @@ public class GetIncomeByIdHandler(IIncomeRepository repository)
         var income = await repository.GetById(request.Id, cancellationToken);
         return income is null 
             ? Result.Failure<GetIncomeByIdResponse>(new Error("404", "Usuário não encontrado.")) 
-            : Result.Success(new GetIncomeByIdResponse(income.Id, income.Title, income.Description, income.Amount, income.Date, income.Status));
+            : Result.Success(new GetIncomeByIdResponse(income.Id, income.Title.ToString()!, income.Description.ToString()!, income.Amount.Value, income.Date, income.Status));
     }
 }

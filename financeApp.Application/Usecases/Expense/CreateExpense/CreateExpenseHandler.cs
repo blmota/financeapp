@@ -23,6 +23,6 @@ public class CreateExpenseHandler(IExpenseRepository repository)
         var expense = await repository.Create(newExpense, cancellationToken);
         return expense is null
             ? Result.Failure<CreateExpenseResponse>(new Error("400", "Não foi possível cadastrar a despesa.")) 
-            : Result.Success(new CreateExpenseResponse(expense.Id, expense.Title, expense.Amount, expense.DueDate, expense.Status, expense.Description, expense.CategoryId));
+            : Result.Success(new CreateExpenseResponse(expense.Id, expense.Title.ToString()!, expense.Amount.Value, expense.DueDate.Value, expense.Status, expense.Description.ToString()!, expense.CategoryId));
     }
 }

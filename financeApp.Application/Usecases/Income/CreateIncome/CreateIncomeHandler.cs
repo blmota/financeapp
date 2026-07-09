@@ -22,6 +22,6 @@ public class CreateIncomeHandler(IIncomeRepository repository)
         var income = await repository.Create(newIncome, cancellationToken);
         return income is null
             ? Result.Failure<CreateIncomeResponse>(new Error("400", "Não foi possível cadastrar a receita.")) 
-            : Result.Success(new CreateIncomeResponse(income.Id, income.Title, income.Description, income.Amount, income.Date, income.Status));
+            : Result.Success(new CreateIncomeResponse(income.Id, income.Title.ToString()!, income.Description.ToString()!, income.Amount.Value, income.Date, income.Status));
     }
 }

@@ -15,6 +15,6 @@ public class MarkIncomeAsReceivedHandler(IIncomeRepository repository)
         await repository.UpdateStatus(income, cancellationToken);
         return income is null 
             ? Result.Failure<MarkIncomeAsReceivedResponse>(new Error("400", "Não foi possível salvar receita como recebida.")) 
-            : Result.Success(new MarkIncomeAsReceivedResponse(income.Id, income.Title, income.Description, income.Amount, income.Date, income.Status));
+            : Result.Success(new MarkIncomeAsReceivedResponse(income.Id, income.Title.ToString()!, income.Description.ToString()!, income.Amount.Value, income.Date, income.Status));
     }
 }

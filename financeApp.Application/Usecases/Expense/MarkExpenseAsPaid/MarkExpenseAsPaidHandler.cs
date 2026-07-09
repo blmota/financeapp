@@ -15,6 +15,6 @@ public class MarkExpenseAsPaidHandler(IExpenseRepository repository)
         await repository.UpdateStatus(expense, cancellationToken);
         return expense is null
             ? Result.Failure<MarkExpenseAsPaidResponse>(new Error("400", "Não foi possível salvar despesa como paga.")) 
-            : Result.Success(new MarkExpenseAsPaidResponse(expense.Id, expense.Title, expense.Amount, expense.DueDate, expense.Status, expense.Description, expense.CategoryId));
+            : Result.Success(new MarkExpenseAsPaidResponse(expense.Id, expense.Title.ToString()!, expense.Amount.Value, expense.DueDate.Value, expense.Status, expense.Description.ToString()!, expense.CategoryId));
     }
 }

@@ -8,7 +8,7 @@ public sealed record CreateExpenseCommand(
     int UserId,
     string Title,
     int Amount,
-    DateTime DueDate,
+    DateOnly DueDate,
     string Description,
     int CategoryId
     ) : IRequest<Result<CreateExpenseResponse>>;

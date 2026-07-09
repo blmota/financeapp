@@ -6,7 +6,7 @@ public class GetExpenseByIdResponse(
     int Id,
     string Title,
     int  Amount,
-    DateTime DueDate,
+    DateOnly DueDate,
     ExpenseStatusEnum Status,
     string Description,
     int CategoryId

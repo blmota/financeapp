@@ -14,6 +14,6 @@ public class MarkExpenseAsOverdueHandler(IExpenseRepository repository)
         expense.Overdue();
         return expense is null
             ? Result.Failure<MarkExpenseAsOverdueResponse>(new Error("400", "Não foi possível salvar despesa como vencida.")) 
-            : Result.Success(new MarkExpenseAsOverdueResponse(expense.Id, expense.Title, expense.Amount, expense.DueDate, expense.Status, expense.Description, expense.CategoryId));
+            : Result.Success(new MarkExpenseAsOverdueResponse(expense.Id, expense.Title.ToString()!, expense.Amount.Value, expense.DueDate.Value, expense.Status, expense.Description.ToString()!, expense.CategoryId));
     }
 }
