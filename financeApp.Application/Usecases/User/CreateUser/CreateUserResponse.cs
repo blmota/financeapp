@@ -1,3 +1,5 @@
+using financeApp.Domain.Enums;
+
 namespace financeApp.Application.Usecases.User.CreateUser;
 
 public sealed record CreateUserResponse(
@@ -5,4 +7,4 @@ public sealed record CreateUserResponse(
     string FullName,
     string Email,
     int Level,
-    string Status);
+    UserStatusEnum Status);

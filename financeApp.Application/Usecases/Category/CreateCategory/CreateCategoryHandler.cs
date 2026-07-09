@@ -15,6 +15,6 @@ public class CreateCategoryHandler(ICategoryRepository repository)
         var category = await repository.Create(newCategory, cancellationToken);
         return category == null
             ? Result.Failure<CreateCategoryResponse>(new Error("400", "Não foi possível cadastrar a categoria.")) 
-            : Result.Success(new CreateCategoryResponse(category.Id, category.Title, category.Status));
+            : Result.Success(new CreateCategoryResponse(category.Id, category.Title.ToString()!, category.Status));
     }
 }

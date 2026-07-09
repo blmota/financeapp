@@ -15,6 +15,6 @@ public class MarkCategoryInactiveHandler(ICategoryRepository repository)
         await repository.UpdateStatus(category, cancellationToken);
         return category is null
             ? Result.Failure<MarkCategoryInactiveResponse>(new Error("400", "Não foi possível inativar a categoria.")) 
-            : Result.Success(new MarkCategoryInactiveResponse(category.Id, category.Title, category.Status));
+            : Result.Success(new MarkCategoryInactiveResponse(category.Id, category.Title.ToString()!, category.Status));
     }
 }

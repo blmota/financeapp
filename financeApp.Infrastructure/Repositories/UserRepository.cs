@@ -32,8 +32,8 @@ public class UserRepository(AppDbContext context) : IUserRepository
         if (user == null)
             throw new Exception("O usuário não existe ou foi removido recentemente.");
         
-        user.FirstName = entity.FirstName;
-        user.LastName = entity.LastName;
+        user.NewFirstName(entity.FirstName.ToString()!);
+        user.NewLastName(entity.LastName.ToString()!);
         user.Email = entity.Email;
 
         context.Users.Update(user);

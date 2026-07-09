@@ -15,6 +15,6 @@ public class MarkCategoryActiveHandler(ICategoryRepository repository)
         await repository.UpdateStatus(category, cancellationToken);
         return category is null
             ? Result.Failure<MarkCategoryActiveResponse>(new Error("400", "Não foi possível ativar a categoria.")) 
-            : Result.Success(new MarkCategoryActiveResponse(category.Id, category.Title, category.Status));
+            : Result.Success(new MarkCategoryActiveResponse(category.Id, category.Title.ToString()!, category.Status));
     }
 }

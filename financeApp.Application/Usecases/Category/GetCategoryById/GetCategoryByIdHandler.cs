@@ -13,6 +13,6 @@ public class GetCategoryByIdHandler(ICategoryRepository repository)
         var category = await repository.GetById(request.Id, cancellationToken);
         return category == null
             ? Result.Failure<GetCategoryByIdResponse>(new Error("404", "Categoria não encontrada.")) 
-            : Result.Success(new GetCategoryByIdResponse(category.Id, category.Title, category.Status));
+            : Result.Success(new GetCategoryByIdResponse(category.Id, category.Title.ToString()!, category.Status));
     }
 }

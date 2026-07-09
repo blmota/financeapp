@@ -1,6 +1,7 @@
 using financeApp.Domain.Abstractions;
 using financeApp.Domain.Entities;
 using financeApp.Domain.Repositories;
+using financeApp.Domain.ValueObjects;
 using MediatR;
 
 namespace financeApp.Application.Usecases.User.CreateUser;
@@ -12,13 +13,12 @@ public class CreateUserHandler(IUserRepository repository)
     {
         var newUser = new UserEntity
         {
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Email = request.Email,
-            Password = request.Password,
-            Level = request.Level,
-            Status = request.Status
+            FirstName = new TextValueObject(value: request.FirstName, title: "Primeiro nome", isRequired: true),
+            LastName = new TextValueObject(value: request.LastName, title: "Sobrenome", isRequired: true),
+            Email = new EmailValueObject(request.Email)
         };
+        
+        newUser.SetPassword(request.Password);
         
         var user = await repository.Create(newUser, cancellationToken);
         return user is null 
