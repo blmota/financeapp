@@ -41,33 +41,13 @@ public class UserEntity : Entity
         Password = new PasswordValueObject(password);
     }
 
-    public void ToPremium()
+    public void ChangeLevelTo(UserLevelEnum level)
     {
-        Level = UserLevelEnum.Premium;
+        Level = level;
     }
 
-    public void ToManager()
+    public void ChangeStatusTo(UserStatusEnum status)
     {
-        Level = UserLevelEnum.Manager;
-    }
-
-    public void ToAdministrator()
-    {
-        Level = UserLevelEnum.Administrator;
-    }
-
-    public void ChangeToActive()
-    {
-        Status = UserStatusEnum.Active;
-    }
-    
-    public void ChangeToInactive()
-    {
-        Status = UserStatusEnum.Inactive;
-    }
-
-    public void ChangeToBanned()
-    {
-        Status = UserStatusEnum.Banned;
+        Status = status;
     }
 }

@@ -1,4 +1,5 @@
 using financeApp.Domain.Entities;
+using financeApp.Domain.Enums;
 using financeApp.Domain.Repositories;
 using financeApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -52,5 +53,35 @@ public class UserRepository(AppDbContext context) : IUserRepository
         context.Users.Remove(user);
         await context.SaveChangesAsync(cancellationToken);
         return true;
+    }
+
+    public async Task<UserEntity> ChangeLevelTo(int id, UserLevelEnum level, CancellationToken cancellationToken = default)
+    {
+        var user = await GetById(id, cancellationToken);
+
+        if (user == null)
+            throw new Exception("O usuário não existe ou foi removido recentemente.");
+        
+        user.ChangeLevelTo(level);
+
+        context.Users.Update(user);
+        await context.SaveChangesAsync(cancellationToken);
+        
+        return user;
+    }
+
+    public async Task<UserEntity> ChangeStatusTo(int id, UserStatusEnum status, CancellationToken cancellationToken = default)
+    {
+        var user = await GetById(id, cancellationToken);
+
+        if (user == null)
+            throw new Exception("O usuário não existe ou foi removido recentemente.");
+        
+        user.ChangeStatusTo(status);
+
+        context.Users.Update(user);
+        await context.SaveChangesAsync(cancellationToken);
+        
+        return user;
     }
 }
