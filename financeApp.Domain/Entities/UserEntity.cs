@@ -10,14 +10,14 @@ public class UserEntity : Entity
     public TextValueObject LastName { get; set; }
     public EmailValueObject Email { get; set; }
     public PasswordValueObject Password { get; set; }
-    public int Level { get; private set; }
+    public UserLevelEnum Level { get; private set; }
     public UserStatusEnum Status { get; private set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
     public UserEntity()
     {
-        Level = 1;
+        Level = UserLevelEnum.Client;
         Status = UserStatusEnum.Registered;
     }
 
@@ -41,13 +41,33 @@ public class UserEntity : Entity
         Password = new PasswordValueObject(password);
     }
 
-    public void SetLevel(int level = 1)
+    public void ToPremium()
     {
-        Level = level;
+        Level = UserLevelEnum.Premium;
     }
 
-    public void SetStatus(UserStatusEnum status)
+    public void ToManager()
     {
-        Status = status;
+        Level = UserLevelEnum.Manager;
+    }
+
+    public void ToAdministrator()
+    {
+        Level = UserLevelEnum.Administrator;
+    }
+
+    public void ChangeToActive()
+    {
+        Status = UserStatusEnum.Active;
+    }
+    
+    public void ChangeToInactive()
+    {
+        Status = UserStatusEnum.Inactive;
+    }
+
+    public void ChangeToBanned()
+    {
+        Status = UserStatusEnum.Banned;
     }
 }

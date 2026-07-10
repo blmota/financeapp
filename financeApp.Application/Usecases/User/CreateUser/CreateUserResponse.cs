@@ -6,5 +6,5 @@ public sealed record CreateUserResponse(
     int Id,
     string FullName,
     string Email,
-    int Level,
+    UserLevelEnum Level,
     UserStatusEnum Status);
